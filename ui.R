@@ -1,4 +1,4 @@
-## Load the required libraries and install them if necessary
+## Load the required libraries, and install them if necessary
 require(shiny) || install.packages(shiny)
 require(shinythemes) || install.packages(shinythemes)
 require(rhandsontable) || install.packages(rhandsontable)
@@ -14,9 +14,10 @@ shinyUI(fluidPage(theme = "simplex.css",
             <div class="bar">
             <b class="title">Measurement and Modelling Lab &nbsp; - &nbsp; Tools</b><br class="rwd-break">
             <b class="link">
-                <a href="https://shiny.rcg.sfu.ca/u/pserafin/rsquared/"><font color="white">MML-R2</font></a>
-                &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/wbcorr/"><font color="white">MML-WBCORR</font></a>
-                &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/csvgenerator/"><font color="#00ca8a">CSV Generator</font></a>
+                <a href="https://shiny.rcg.sfu.ca/u/pserafin/MML-R2/"><font color="white">MML-R2</font></a>
+                &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/MML-Multicorr/"><font color="white">MML-Multicorr</font></a>
+                &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/MML-WBCORR/"><font color="white">MML-WBCORR</font></a>
+                &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/csv-generator/"><font color="#00ca8a">CSV Generator</font></a>
             </b>
             </div>
             <br>'
@@ -61,7 +62,7 @@ shinyUI(fluidPage(theme = "simplex.css",
             ## Only created if the file being created is a hypothesis matrix
             conditionalPanel(condition = "input.file == 'hypothesis'",
                              helpText("Note: Cells containing the same positive integer are hypothesised to be equal,
-                                       and cells containing a value between -1 and 1 are hypothesised to be equal to that value.
+                                       and cells containing a value between -1 and 0.999 are hypothesised to be equal to that value.
                                        The lower diagonal is group 1 and the upper diagonal is group 2.
                                        Right click on the hypothesis matrix to download it as a .csv file.")
             )
