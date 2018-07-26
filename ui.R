@@ -26,16 +26,8 @@ shinyUI(fluidPage(theme = "simplex.css",
     ## CSS style stuff
     tags$head(
            tags$style(HTML("@import url('//fonts.googleapis.com/css?family=Patua+One');
-                          h1 {
-                          font-family: 'Patua One';
-                          font-weight: bold;
-                          line-height: 1.1;
-                          color: #333;
-                          }
                           body { min-width: 450px; }
-                          sub { vertical-align: 25%; font-size: 70%; }"
-                           ))
-       ),
+                          sub { vertical-align: 25%; font-size: 70%; }"))),
 
     ## No title since it's in the header bar
     headerPanel('', windowTitle = 'CSV Generator'),
@@ -45,51 +37,44 @@ shinyUI(fluidPage(theme = "simplex.css",
             selectInput("file",
                         label = "File to create:", 
                         choices = list("Correlation matrix" = "correlation", "Hypothesis matrix" = "hypothesis"), 
-                        selected = "correlation"
-            ),
+                        selected = "correlation"),
             sliderInput("variables",
                         "Number of variables:",
                         min = 2,
                         max = 16,
-                        value = 2
-            ),
+                        value = 2),
 
             ## Only created if the file being created is a correlation matrix
             conditionalPanel(condition = "input.file == 'correlation'",
-                             helpText("Note: Right click on a correlation matrix to download it as a .csv file.")
-            ),
+                             helpText("Note: Right click on a correlation matrix to download it as a .csv file.")),
 
             ## Only created if the file being created is a hypothesis matrix
             conditionalPanel(condition = "input.file == 'hypothesis'",
                              helpText("Note: Cells containing the same positive integer are hypothesised to be equal,
                                        and cells containing a value between -1 and 0.999 are hypothesised to be equal to that value.
                                        The lower diagonal is group 1 and the upper diagonal is group 2.
-                                       Right click on the hypothesis matrix to download it as a .csv file.")
-            )
-        ),
+                                       Right click on the hypothesis matrix to download it as a .csv file.
+                                       For a three or four group hypothesis: create and download the 1/2 group hypothesis file,
+                                       manually renumber the hypothesis table's group column,
+                                       download that as a second file, and copy/paste its contents into the previous one."))),
 
-      mainPanel(
+        mainPanel(
 
-        ## Javascript table for creating a correlation matrix
-        conditionalPanel(condition = "input.file == 'correlation'", 
-                         rHandsontableOutput("corrtable1")
-        ),
+            ## Javascript table for creating a correlation matrix
+            conditionalPanel(condition = "input.file == 'correlation'", 
+                             rHandsontableOutput("corrtable1")),
 
-        ## Javascript table for specifying hypotheses
-        conditionalPanel(condition = "input.file == 'hypothesis'", 
-          rHandsontableOutput("corrtable2")
-        ),
+            ## Javascript table for specifying hypotheses
+            conditionalPanel(condition = "input.file == 'hypothesis'", 
+                             rHandsontableOutput("corrtable2")),
 
-        ## Space between the two tables for creating a hypothesis matrix
-        conditionalPanel(condition = "input.file == 'hypothesis'", 
-          HTML("<br>")
-        ),
+            ## Space between the two tables for creating a hypothesis matrix
+            conditionalPanel(condition = "input.file == 'hypothesis'", 
+                             HTML("<br>")),
 
-        ## Javascript table for generating and downloading the hypothesis matrix
-        conditionalPanel(condition = "input.file == 'hypothesis'", 
-                         rHandsontableOutput("hypothesistable")
-        )
-      )
+            ## Javascript table for generating and downloading the hypothesis matrix
+            conditionalPanel(condition = "input.file == 'hypothesis'", 
+                             rHandsontableOutput("hypothesistable")))
 
   ),
   
@@ -106,4 +91,4 @@ shinyUI(fluidPage(theme = "simplex.css",
           </b>
         </div><br>')
   )
-  )
+)
