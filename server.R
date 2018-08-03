@@ -19,6 +19,17 @@ shinyServer(function(input, output, session) {
 
         ## Add an option to download the matrix as a .csv to the context menu
         rhandsontable(MAT) %>%
+            hot_cols(renderer = "
+                function (instance, td, row, col, prop, value, cellProperties) {
+                Handsontable.renderers.NumericRenderer.apply(this, arguments);
+                if (row < col) {
+                    td.style.background = 'lightgrey';
+                    cellProperties.readOnly = true;
+                } else if (row == col) {
+                    td.style.background = '#f3f3f3';
+                    cellProperties.readOnly = true;
+                }
+                }",format='0.[000]') %>%
             hot_context_menu(
                 customOpts = list(
                     csv = list(name = "Download to CSV",
