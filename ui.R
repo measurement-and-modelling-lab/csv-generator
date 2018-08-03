@@ -31,58 +31,51 @@ shinyUI(fluidPage(theme = "simplex.css",
 
     ## No title since it's in the header bar
     headerPanel('', windowTitle = 'CSV Generator'),
-  
+
     sidebarLayout(
         sidebarPanel(
             selectInput("file",
-                        label = "File to create:", 
-                        choices = list("Correlation matrix" = "correlation", "Hypothesis matrix" = "hypothesis"), 
+                        label = "File to create:",
+                        choices = list("Correlation matrix" = "correlation", "Hypothesis matrix" = "hypothesis"),
                         selected = "correlation"),
             sliderInput("variables",
                         "Number of variables:",
                         min = 2,
                         max = 16,
-                        value = 2),
-
-            ## Only created if the file being created is a correlation matrix
-            conditionalPanel(condition = "input.file == 'correlation'",
-                             helpText("Note: Right click on a correlation matrix to download it as a .csv file.")),
-
-            ## Only created if the file being created is a hypothesis matrix
-            conditionalPanel(condition = "input.file == 'hypothesis'",
-
-                             helpText("Note: Cells containing the same positive integer are hypothesised to be equal,
-                                       and cells containing a value between -1 and 0.999 are hypothesised to be equal to that value."),
-
-                             helpText("The lower diagonal is group 1, and the upper diagonal is group 2."),
-
-                             helpText("Right click on the hypothesis matrix to download it as a .csv file."),
-
-                             helpText("For a three or more group hypothesis:
-                                       1. create the hypothesis matrix for the first and second group and download it,
-                                       2. create a hypothesis matrix for the third and (if desired) fourth group and download that,
-                                       3. copy and paste the contents of the second file into the first file."))),
+                        value = 2)),
 
         mainPanel(
+            tabsetPanel(
 
-            ## Javascript table for creating a correlation matrix
-            conditionalPanel(condition = "input.file == 'correlation'", 
-                             rHandsontableOutput("corrtable1")),
+                id = "inTabset",
+                                        #tabPanel(value = "about", "About", includeHTML("./documentation/about.html")),
+                tabPanel(value = "about", "About", includeHTML("./documentation/about.html")),
+                tabPanel(value = "output", "Output",
 
-            ## Javascript table for specifying hypotheses
-            conditionalPanel(condition = "input.file == 'hypothesis'", 
-                             rHandsontableOutput("corrtable2")),
+                         ## Javascript table for creating a correlation matrix
+                         conditionalPanel(condition = "input.file == 'correlation'",
+                                          rHandsontableOutput("corrtable1")),
 
-            ## Space between the two tables for creating a hypothesis matrix
-            conditionalPanel(condition = "input.file == 'hypothesis'", 
-                             HTML("<br>")),
+                         ## Javascript table for specifying hypotheses
+                         conditionalPanel(condition = "input.file == 'hypothesis'",
+                                          rHandsontableOutput("corrtable2")),
 
-            ## Javascript table for generating and downloading the hypothesis matrix
-            conditionalPanel(condition = "input.file == 'hypothesis'", 
-                             rHandsontableOutput("hypothesistable")))
+                         ## Space between the two tables for creating a hypothesis matrix
+                         conditionalPanel(condition = "input.file == 'hypothesis'",
+                                          HTML("<br>")),
+
+                         ## Javascript table for generating and downloading the hypothesis matrix
+                         conditionalPanel(condition = "input.file == 'hypothesis'",
+                                          rHandsontableOutput("hypothesistable"))
+
+                         )
+            )
+
+
+)
 
   ),
-  
+
   HTML('<br><br><br><br><br><br><br><br><br><br>'), ## Breathing room
 
   ## Footer bar
