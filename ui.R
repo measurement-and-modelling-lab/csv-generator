@@ -50,13 +50,18 @@ shinyUI(fluidPage(theme = "simplex.css",
 
             ## Only created if the file being created is a hypothesis matrix
             conditionalPanel(condition = "input.file == 'hypothesis'",
+
                              helpText("Note: Cells containing the same positive integer are hypothesised to be equal,
-                                       and cells containing a value between -1 and 0.999 are hypothesised to be equal to that value.
-                                       The lower diagonal is group 1 and the upper diagonal is group 2.
-                                       Right click on the hypothesis matrix to download it as a .csv file.
-                                       For a three or four group hypothesis: create and download the 1/2 group hypothesis file,
-                                       manually renumber the hypothesis table's group column,
-                                       download that as a second file, and copy/paste its contents into the previous one."))),
+                                       and cells containing a value between -1 and 0.999 are hypothesised to be equal to that value."),
+
+                             helpText("The lower diagonal is group 1, and the upper diagonal is group 2."),
+
+                             helpText("Right click on the hypothesis matrix to download it as a .csv file."),
+
+                             helpText("For a three or more group hypothesis:
+                                       1. create the hypothesis matrix for the first and second group and download it,
+                                       2. create a hypothesis matrix for the third and (if desired) fourth group and download that,
+                                       3. copy and paste the contents of the second file into the first file."))),
 
         mainPanel(
 
