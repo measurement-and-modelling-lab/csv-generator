@@ -1,0 +1,2 @@
+ - Fix bug where the input table for generating a hypothesis matrix doesn't appear until you change the number of variables
+ - Add about page or tab
