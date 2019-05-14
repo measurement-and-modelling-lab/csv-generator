@@ -18,6 +18,8 @@ shinyUI(fluidPage(theme = "simplex.css",
                 &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/MML-Multicorr/"><font color="white">MML-Multicorr</font></a>
                 &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/MML-WBCORR/"><font color="white">MML-WBCORR</font></a>
                 &emsp;&nbsp;<a href="https://shiny.rcg.sfu.ca/u/pserafin/csv-generator/"><font color="#00ca8a">CSV Generator</font></a>
+                &emsp;&nbsp;<a href="http://members.psyc.sfu.ca/labs/mml/research"><font color="white">Distribution Tests</font></a>
+                
             </b>
             </div>
             <br>'
@@ -49,7 +51,6 @@ shinyUI(fluidPage(theme = "simplex.css",
 
                 id = "inTabset",
                                         #tabPanel(value = "about", "About", includeHTML("./documentation/about.html")),
-                tabPanel(value = "about", "About", includeHTML("./documentation/about.html")),
                 tabPanel(value = "output", "Output",
 
                          ## Javascript table for creating a correlation matrix
@@ -68,7 +69,8 @@ shinyUI(fluidPage(theme = "simplex.css",
                          conditionalPanel(condition = "input.file == 'hypothesis'",
                                           rHandsontableOutput("hypothesistable"))
 
-                         )
+                         ),
+                tabPanel(value = "about", "About", includeHTML("./documentation/about.html"))
             )
 
 
