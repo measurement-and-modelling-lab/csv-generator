@@ -5,15 +5,15 @@
 </p>
 
 <p>
-  To create a correlation matrix, simply fill the lower triangle of the table with numbers between -1 and 1, then right click on it to download it as a .csv file. Neither MML-WBCORR nor MML-Multicorr require the full correlation matrix, so the upper triangle is greyed out.
+  To create a correlation matrix, simply fill the lower triangle of the table with numbers between -1 and 1, then right click on the lower triangle (white part) to download it as a .csv file. Neither MML-WBCORR nor MML-Multicorr require the full correlation matrix, so the upper triangle is greyed out.
 </p>
 
 <p>
-  To create a hypothesis matrix, fill the correlation matrix with a combination of positive integers and numbers between -1 and 0.999, then right click on the hypothesis table to download it. Cells with the same positive integer are hypothesised to be equal, and cells containing a value between -1 and 0.999 are hypothesised to be equal to that value. The lower triangle of the matrix is the first group, and the upper triangle is the second group.
+  To create a hypothesis matrix for MML-MULTICORR or MML-WBCORR, fill the correlation matrix with a combination of positive integers and numbers between -1 and 0.999, then right click on the hypothesis table (white part) to download it. Cells with the same positive integer are hypothesised to be equal, and cells containing a value between -1 and 0.999 are hypothesised to be equal to that value. In a single group scenario, only complete the lower triangle. In a two group scenario, use both the lower and upper triangle of the table; such that the lower triangle of the matrix is the first group, and the upper triangle is the second group. See MML-MULTICORR and MML-WBCORR tabs for more information on how to set up appropriate "Hypothesis" files.
 </p>
 
 <p>
-Only two group hypotheses are fully supported, but you can create a three or more group hypothesis in the following way:
+Within CSV-Generator, only two group hypotheses are fully supported, but you can create a three or more group hypothesis in the following way:
 
   <ol>
     <li>Create the hypothesis matrix for the first and second group and download it,</li>
